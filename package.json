@@ -1,0 +1,25 @@
+{
+  "name": "capability-checklist-code",
+  "version": "1.0.0",
+  "description": "Code to test before check in the list",
+  "main": "index.js",
+  "scripts": {
+    "test": "clear && tape test/**/*-test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guanzhou-zhao/capability-checklist-code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guanzhou-zhao/capability-checklist-code/issues"
+  },
+  "homepage": "https://github.com/guanzhou-zhao/capability-checklist-code#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
+  }
+}
