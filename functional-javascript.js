@@ -43,23 +43,41 @@ function reduce(arr, callback, initValue) {
 
   return result
 }
-function any(arr) {
-
+function any(arr, callback) {
+  return reduce(arr, function(preV, curV) {
+    return preV && callback(curV)
+  }, true)
 }
 function sum(arr) {
-
+  if (any(arr, function(item) { return typeof item === "number" })) {
+    return reduce(arr, function(preV, curV) { return preV + curV})
+  } else {
+    throw new Error("sum() is only for number array")
+  }
 }
 function product() {
 
 }
-function maximum() {
-
+function maximum(arr) {
+  return reduce(arr, function(max, curV) {
+    return max > curV ? max : curV
+  })
 }
 function minimum() {
-
+  // same as above
 }
 function concat() {
-
+  var result = []
+  for (var i = 0; i < arguments.length; i++) {
+    if (Array.isArray(arguments[i])) {
+      arguments[i].forEach(function(item) {
+        result.push(item)
+      })
+    } else {
+      result.push(arguments[i])
+    }
+  }
+  return result
 }
 function merge() {
 

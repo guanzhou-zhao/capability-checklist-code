@@ -69,8 +69,62 @@ test("test reduce()", function(t) {
   }
   var expected2 = numberArray.reduce(callbackReturnObject, {})
   var actual2 = arrayUtils.reduce(numberArray, callbackReturnObject, {})
-  console.log(expected2, actual2)
   t.deepEqual(actual2, expected2, "reduce() => array.reduce()  reduce array to object")
+
+  t.end()
+})
+
+test("test any()", function(t) {
+  var callbackAllPass = function(item) {
+    return item > 0
+  }
+  var callbackPartPass = function(item) {
+    return item > 2
+  }
+  var callbackAllFail = function(item) {
+    return item < 0
+  }
+
+  var expectedAllPass = true
+  var expectedPartPass = false
+  var expectedAllFail = false
+
+  t.equal(arrayUtils.any(numberArray, callbackAllPass), true, "any() all pass")
+  t.equal(arrayUtils.any(numberArray, callbackPartPass), false, "any() part pass")
+  t.equal(arrayUtils.any(numberArray, callbackAllFail), false, "any() all fail")
+  t.end()
+})
+
+test("test sum()", function(t) {
+  var expectedSum = numberArray.reduce(function(preV, curV) {return preV + curV})
+  var actualSum = arrayUtils.sum(numberArray)
+
+  t.equal(actualSum, expectedSum, "sum()")
+
+  //t.throws(arrayUtils.sum(["sss"]), /sum() is only for number array/, "sum() throw error if called on not number array")
+  t.end()
+})
+
+test("test maximum()", function(t) {
+  var expectedMaximum = numberArray.reduce(function(preV, curV) {return preV > curV ? preV : curV})
+  var actualMaximum = arrayUtils.maximum(numberArray)
+
+  t.equal(actualMaximum, expectedMaximum, "maximum()")
+
+  //t.throws(arrayUtils.sum(["sss"]), /sum() is only for number array/, "sum() throw error if called on not number array")
+  t.end()
+})
+
+test("test concat()", function(t) {
+  var s = "haha"
+  var obj = {name: "ben"}
+  var iAmNull
+  var arr = ["a", 'b', 'c']
+
+  var expected = numberArray.concat(s, obj, iAmNull, arr)
+  var actual = arrayUtils.concat(numberArray, s, obj, iAmNull, arr)
+
+  t.deepEqual(actual, expected, "concat()")
 
   t.end()
 })
